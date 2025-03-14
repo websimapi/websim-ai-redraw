@@ -238,8 +238,9 @@ async function loadImageToCanvas(src, isRemote = false) {
         };
         
         if (isRemote) {
-            // Use a CORS proxy for remote images
+            // Set crossOrigin before setting the src
             img.crossOrigin = 'anonymous';
+            // Use a reliable CORS proxy
             img.src = `https://corsproxy.io/?${encodeURIComponent(src)}`;
         } else {
             img.src = src;
