@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI ReDraw</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "html2canvas": "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>AI ReDraw</h1>
+        <p>Draw something simple, then watch AI transform it into HD art!</p>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tools-panel">
+                <div class="tool-group">
+                    <button id="pencil" class="tool active" title="Pencil">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                        </svg>
+                    </button>
+                    <button id="eraser" class="tool" title="Eraser">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M15.14 3c-.51 0-1.02.2-1.41.59L2.59 14.73c-.78.77-.78 2.04 0 2.83L5.03 20h7.94l8.84-8.84c.78-.78.78-2.05 0-2.83l-5.24-5.24c-.4-.39-.91-.59-1.43-.59zM17 18H7.41l-3-3 7.07-7.07 6.7 6.7L17 18z"/>
+                        </svg>
+                    </button>
+                    <button id="clear" class="tool" title="Clear Canvas">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="color-picker">
+                    <input type="color" id="colorPicker" value="#000000">
+                    <label for="colorPicker">Color</label>
+                </div>
+                <div class="size-picker">
+                    <input type="range" id="brushSize" min="1" max="50" value="5">
+                    <label for="brushSize">Size: <span id="sizeValue">5</span>px</label>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="drawingCanvas"></canvas>
+            </div>
+            <div class="action-buttons">
+                <button id="analyzeBtn" class="action-btn">Analyze & Transform</button>
+                <div class="loading-spinner" id="loadingSpinner">
+                    <svg viewBox="0 0 50 50" width="50" height="50">
+                        <circle cx="25" cy="25" r="20" fill="none" stroke-width="5" stroke="#007bff" stroke-dasharray="31.4 31.4">
+                            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 25 25" to="360 25 25" dur="1s" repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="results-container" id="resultsContainer">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="description">Description</button>
+                <button class="tab-btn" data-tab="aiImage">AI Image</button>
+            </div>
+            <div class="tab-content">
+                <div id="description" class="tab-pane active">
+                    <div id="analysisResult" class="analysis-result">
+                        <p class="placeholder">Your drawing description will appear here...</p>
+                    </div>
+                </div>
+                <div id="aiImage" class="tab-pane">
+                    <div id="generatedImage" class="generated-image">
+                        <p class="placeholder">Your AI-generated image will appear here...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Draw something, then click "Analyze & Transform" to see the magic happen!</p>
+    </footer>
+    
+    <script type="module" src="app.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
