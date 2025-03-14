@@ -240,8 +240,7 @@ async function loadImageToCanvas(src, isRemote = false) {
         if (isRemote) {
             // Use a CORS proxy for remote images
             img.crossOrigin = 'anonymous';
-            const corsProxy = 'https://corsproxy.io/?';
-            img.src = corsProxy + encodeURIComponent(src);
+            img.src = `https://corsproxy.io/?${encodeURIComponent(src)}`;
         } else {
             img.src = src;
         }
@@ -376,6 +375,7 @@ function renderGalleryItems(items) {
         
         loadOriginalBtn.addEventListener('click', async () => {
             try {
+                switchTab('draw'); // Switch to drawing tab
                 await loadImageToCanvas(item.originalImage);
             } catch (error) {
                 console.error('Error loading image:', error);
@@ -385,6 +385,7 @@ function renderGalleryItems(items) {
         
         loadGeneratedBtn.addEventListener('click', async () => {
             try {
+                switchTab('draw'); // Switch to drawing tab
                 await loadImageToCanvas(item.generatedImage, true);
             } catch (error) {
                 console.error('Error loading image:', error);
@@ -518,6 +519,7 @@ function displayResults(description, imageUrl) {
     // Add event listener to load button
     document.getElementById('loadGenerated').addEventListener('click', async () => {
         try {
+            switchTab('draw'); // Switch to drawing tab
             await loadImageToCanvas(imageUrl, true);
         } catch (error) {
             console.error('Error loading generated image:', error);
